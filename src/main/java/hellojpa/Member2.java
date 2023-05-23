@@ -41,4 +41,18 @@ public Team2 getTeam() {
 public void setTeam(Team2 team) {
     this.team = team;
 }
+
+public void changeTeam(Team2 team) {
+    this.team = team;
+    team.getMembers().add(this);
+}
+
+@Override
+public String toString() {
+    return "Member2{" +
+                   "id=" + id +
+                   ", username='" + username + '\'' +
+                   ", team=" + team +
+                   '}';
+}
 }

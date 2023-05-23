@@ -37,4 +37,18 @@ public List<Member2> getMembers() {
 public void setMembers(List<Member2> members) {
     this.members = members;
 }
+
+public void addMember(Member2 member) {
+    member.setTeam(this);
+    members.add(member);
+}
+
+@Override
+public String toString() {
+    return "Team2{" +
+                   "id=" + id +
+                   ", name='" + name + '\'' +
+                   ", members=" + members +
+                   '}';
+}
 }
