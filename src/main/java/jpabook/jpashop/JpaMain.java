@@ -15,11 +15,9 @@ public static void main(String[] args) {
     EntityTransaction tx = em.getTransaction();
     tx.begin();
     try {
-        
         Order order = new Order();
         order.addOrderItem(new OrderItem());
         tx.commit();
-        
     } catch (Exception e) {
         tx.rollback();
     }finally {
