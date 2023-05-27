@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Member2 {
 @Id
 @GeneratedValue
-@Column(name="MEMBER_ID")
+@Column(name = "MEMBER_ID")
 private Long id;
 @Column(name = "USERNAME")
 private String username;
@@ -14,6 +14,10 @@ private String username;
 @ManyToOne
 @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
 private Team2 team;
+
+@OneToOne
+@JoinColumn(name = "LOCKER_ID")
+private Locker locker;
 
 public Long getId() {
     return id;
