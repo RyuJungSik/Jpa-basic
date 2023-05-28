@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team2 extends BaseEntity{
+public class Team2 extends BaseEntity2 {
 @Id
 @GeneratedValue
 @Column(name="TEAM_ID")
