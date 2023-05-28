@@ -14,14 +14,19 @@ public static void main(String[] args) {
     
     try {
     
-        Member2 member = new Member2();
-        member.setUsername("member1");
-        em.persist(member);
+        Movie movie = new Movie();
+        movie.setDirector("aaaa");
+        movie.setActor("bbb");
+        movie.setName("naaa");
+        movie.setPrice(10000);
+        
+        em.persist(movie);
+        
+        em.flush();
+        em.clear();
     
-        Team2 team = new Team2();
-        team.setName("teamA");
-        team.getMembers().add(member);
-        em.persist(team);
+        Movie findMovie = em.find(Movie.class, movie.getId());
+        System.out.println("findMovie = " + findMovie);
         
         tx.commit();
     } catch (Exception e) {
