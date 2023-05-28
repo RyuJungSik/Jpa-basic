@@ -1,10 +1,10 @@
 package hellojpa;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class JpaMain {
 public static void main(String[] args) {
@@ -14,25 +14,36 @@ public static void main(String[] args) {
     tx.begin();
     
     try {
-    
-        Member2 member = new Member2();
-        member.setUsername("user1");
-        member.setCreatedBy("kim");
-        member.setCreatedDate(LocalDateTime.now());
-        
-        em.persist(member);
+        Member2 member1 = new Member2();
+        member1.setUsername("user1");
+        em.persist(member1);
         
         em.flush();
         em.clear();
         
+        Member2 refMember = em.getReference(Member2.class, member1.getId());
+        System.out.println("refMember = " + refMember.getClass());
+    
+        em.detach(refMember);
+        System.out.println("refMember.getUsername() = " + refMember.getUsername());
+    
+//        refMember.getUsername();
+        em.close();
+        
         tx.commit();
     } catch (Exception e) {
         tx.rollback();
-    }finally {
+        e.printStackTrace();
+    } finally {
         em.close();
     }
     emf.close();
-    
 }
+
+private static void logic(Member2 m1, Member2 m2) {
+    System.out.println("m1 == m2  " + (m1 instanceof Member2));
+    System.out.println("m1 == m2  " + (m2 instanceof Member2));
+}
+
 
 }
