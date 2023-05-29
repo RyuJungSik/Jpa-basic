@@ -45,3 +45,7 @@ _
 /src/main/java/jpabook/jpashop/domain/Album.java,1/0/10194f4a27faa1838f4738f4d4443e92baa63401
 W
 'src/main/java/hellojpa/BaseEntity2.java,b/b/bbb304ed685495bdd054450f97fe786f79181527
+Q
+!src/main/java/hellojpa/Team2.java,a/d/ad542072083bc1893b35997a9f210182b2eec0ef
+S
+#src/main/java/hellojpa/Member2.java,2/6/261621efb3156f3cf99e86837f0d7a729189ca38

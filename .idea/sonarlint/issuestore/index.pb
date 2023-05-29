@@ -45,3 +45,7 @@ c
 3src/main/java/jpabook/jpashop/domain/OrderItem.java,5/f/5ff98ff609f00aa390c3badb12b283b172996795
 Z
 *src/main/java/jpabook/jpashop/JpaMain.java,d/8/d8078389fd62838fd61e9a23df1bf84f0a19134a
+Q
+!src/main/java/hellojpa/Team2.java,a/d/ad542072083bc1893b35997a9f210182b2eec0ef
+S
+#src/main/java/hellojpa/Member2.java,2/6/261621efb3156f3cf99e86837f0d7a729189ca38
