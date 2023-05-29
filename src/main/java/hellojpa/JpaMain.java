@@ -15,23 +15,19 @@ public static void main(String[] args) {
     tx.begin();
     
     try {
-        Child child1 = new Child();
-        Child child2 = new Child();
-    
-        Parent parent = new Parent();
-        parent.addChild(child1);
-        parent.addChild(child2);
+        Address address = new Address("city", "street", "10000");
         
-        em.persist(parent);
-        em.persist(child1);
-        em.persist(child2);
-        
-        em.flush();
-        em.clear();
+        Member2 member = new Member2();
+        member.setUsername("member1");
+        member.setHomeAddress(address);
+        em.persist(member);
     
-        Parent findParent = em.find(Parent.class, parent.getId());
-        em.remove(findParent);
+        Address copyAddress = new Address(address.getCity(), address.getStreet(), address.getZipcode());
     
+        Member2 member2 = new Member2();
+        member2.setUsername("member2");
+        member2.setHomeAddress(copyAddress);
+        em.persist(member2);
         tx.commit();
     } catch (Exception e) {
         tx.rollback();
