@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class JpaMain {
 public static void main(String[] args) {
@@ -14,22 +15,22 @@ public static void main(String[] args) {
     tx.begin();
     
     try {
+        Team2 team = new Team2();
+        team.setName("teamA");
+        em.persist(team);
+        
         Member2 member1 = new Member2();
         member1.setUsername("user1");
+        member1.setTeam(team);
         em.persist(member1);
         
         em.flush();
         em.clear();
         
-        Member2 refMember = em.getReference(Member2.class, member1.getId());
-        System.out.println("refMember = " + refMember.getClass());
+//        Member2 m = em.find(Member2.class, member1.getId());
     
-        em.detach(refMember);
-        System.out.println("refMember.getUsername() = " + refMember.getUsername());
-    
-//        refMember.getUsername();
-        em.close();
-        
+        List<Member2> members = em.createQuery("select m from Member2 m", Member2.class).getResultList();
+
         tx.commit();
     } catch (Exception e) {
         tx.rollback();

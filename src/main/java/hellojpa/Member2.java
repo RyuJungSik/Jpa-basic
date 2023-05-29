@@ -1,5 +1,6 @@
 package hellojpa;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -11,8 +12,8 @@ private Long id;
 @Column(name = "USERNAME")
 private String username;
 
-@ManyToOne
-@JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "TEAM_ID")
 private Team2 team;
 
 public Long getId() {
@@ -29,5 +30,13 @@ public String getUsername() {
 
 public void setUsername(String username) {
     this.username = username;
+}
+
+public Team2 getTeam() {
+    return team;
+}
+
+public void setTeam(Team2 team) {
+    this.team = team;
 }
 }
