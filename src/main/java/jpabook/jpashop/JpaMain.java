@@ -1,5 +1,8 @@
 package jpabook.jpashop;
 
+import hellojpa.Address;
+import hellojpa.Member2;
+import hellojpa.Period;
 import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
@@ -16,13 +19,8 @@ public static void main(String[] args) {
     EntityTransaction tx = em.getTransaction();
     tx.begin();
     try {
-    
-        Book book = new Book();
-        book.setName("aaa");
-        book.setAuthor("kim");
         
-        em.persist(book);
-        
+
         tx.commit();
     } catch (Exception e) {
         tx.rollback();
