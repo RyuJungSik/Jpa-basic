@@ -11,21 +11,22 @@ public static void main(String[] args) {
     tx.begin();
     
     try {
-        Member3 member = new Member3();
-        member.setUsername("member1");
-        member.setAge(10);
-        em.persist(member);
+        for (int i = 0; i < 100; i++) {
+            Member3 member = new Member3();
+            member.setUsername("member1" + i);
+            member.setAge(i);
+            em.persist(member);
+        }
         
         em.flush();
         em.clear();
     
-        List<Member3DTO> result = em.createQuery("select new jpql.Member3DTO(m.username, m.age) from Member3 m", Member3DTO.class).getResultList();
+        List<Member3> result = em.createQuery("select m from Member3 m order by m.age desc", Member3.class).setFirstResult(1).setMaxResults(10).getResultList();
     
-        Member3DTO member3DTO = result.get(0);
-    
-        System.out.println("member3DTO.getUsername() = " + member3DTO.getUsername());
-        System.out.println("member3DTO.getAge() = " + member3DTO.getAge());
-    
+        System.out.println("result.size() = " + result.size());
+        for (Member3 member3 : result) {
+            System.out.println("member3 = " + member3);
+        }
         tx.commit();
     } catch (Exception e) {
         tx.rollback();
