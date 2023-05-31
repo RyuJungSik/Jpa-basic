@@ -15,21 +15,16 @@ public static void main(String[] args) {
         member.setUsername("member1");
         member.setAge(10);
         em.persist(member);
+        
+        em.flush();
+        em.clear();
     
-        TypedQuery<Member3> query1 = em.createQuery("select m from Member3 m", Member3.class);
-        TypedQuery<String> query2 = em.createQuery("select m.username from Member3 m", String.class);
-        Query query = em.createQuery("select m.username, m.age from Member3 m");
-        TypedQuery<Member3> query4 = em.createQuery("select m from Member3 m where m.username = :username", Member3.class);
-        query4.setParameter("username", "member1");
-        Member3 singleResult = query4.getSingleResult();
-        System.out.println("singleResult = " + singleResult);
-        System.out.println("singleResult = " + singleResult.getUsername());
+        List<Member3DTO> result = em.createQuery("select new jpql.Member3DTO(m.username, m.age) from Member3 m", Member3DTO.class).getResultList();
     
-        List<Member3> resultList = query1.getResultList();
+        Member3DTO member3DTO = result.get(0);
     
-        for (Member3 member1 : resultList) {
-            System.out.println("member1 = " + member1);
-        }
+        System.out.println("member3DTO.getUsername() = " + member3DTO.getUsername());
+        System.out.println("member3DTO.getAge() = " + member3DTO.getAge());
     
         tx.commit();
     } catch (Exception e) {
