@@ -11,9 +11,14 @@ private Long id;
 private String username;
 private int age;
 
-@ManyToOne
+@ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name = "TEAM_ID")
 private Team3 team;
+
+public void changeTeam(Team3 team) {
+    this.team = team;
+    team.getMembers().add(this);
+}
 
 public Long getId() {
     return id;
@@ -37,6 +42,14 @@ public int getAge() {
 
 public void setAge(int age) {
     this.age = age;
+}
+
+public Team3 getTeam() {
+    return team;
+}
+
+public void setTeam(Team3 team) {
+    this.team = team;
 }
 
 @Override

@@ -20,6 +20,14 @@ private String name;
 @OneToMany(mappedBy = "team")
 private List<Member3> members = new ArrayList<>();
 
+public List<Member3> getMembers() {
+    return members;
+}
+
+public void setMembers(List<Member3> members) {
+    this.members = members;
+}
+
 public Long getId() {
     return id;
 }

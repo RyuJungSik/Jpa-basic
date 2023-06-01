@@ -11,22 +11,22 @@ public static void main(String[] args) {
     tx.begin();
     
     try {
-        for (int i = 0; i < 100; i++) {
-            Member3 member = new Member3();
-            member.setUsername("member1" + i);
-            member.setAge(i);
-            em.persist(member);
-        }
+        Team3 team = new Team3();
+        team.setName("teamA");
+        em.persist(team);
+        
+        Member3 member = new Member3();
+        member.setUsername("member1" );
+        member.setAge(10);
+        member.setTeam(team);
+        em.persist(member);
         
         em.flush();
         em.clear();
-    
-        List<Member3> result = em.createQuery("select m from Member3 m order by m.age desc", Member3.class).setFirstResult(1).setMaxResults(10).getResultList();
-    
-        System.out.println("result.size() = " + result.size());
-        for (Member3 member3 : result) {
-            System.out.println("member3 = " + member3);
-        }
+        
+        String query = "select m from Member3 m left join Team3 t on m.username=t.name";
+        List<Member3> result = em.createQuery(query, Member3.class).getResultList();
+        
         tx.commit();
     } catch (Exception e) {
         tx.rollback();
