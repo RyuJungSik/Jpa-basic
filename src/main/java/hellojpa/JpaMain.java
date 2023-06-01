@@ -4,6 +4,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -16,41 +19,10 @@ public static void main(String[] args) {
     tx.begin();
     
     try {
-        Member2 member = new Member2();
-        member.setUsername("member1");
-        member.setHomeAddress(new Address("city1", "street", "10000"));
+    
+        em.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER").getResultList();
         
-        member.getFavoriteFoods().add("chicken");
-        member.getFavoriteFoods().add("pizza");
-        member.getFavoriteFoods().add("hamburger");
-        
-        member.getAddressHistory().add(new AddressEntity("old1", "street", "10000"));
-        member.getAddressHistory().add(new AddressEntity("old2", "street", "10000"));
-        
-        em.persist(member);
-        
-        em.flush();
-        em.clear();
-        
-        System.out.println("========== START  =============");
-        Member2 findMember = em.find(Member2.class, member.getId());
-//
-//        //homeCity -> newCity
-////        findMember.getHomeAddress().setCity("newCity");
-//
-//        Address a = findMember.getHomeAddress();
-//        findMember.setHomeAddress(new Address("newCity", a.getStreet(), a.getZipcode()));
-//
-//        //chicken -> korean
-//        findMember.getFavoriteFoods().remove("chicken");
-//        findMember.getFavoriteFoods().add("korean");
-//
-//        System.out.println("========== START2  =============");
-//        findMember.getAddressHistory().remove(new Address("old1", "street", "10000"));
-//        findMember.getAddressHistory().add(new Address("newCity1", a.getStreet(), a.getZipcode()));
-        
-        
-        
+    
         tx.commit();
     } catch (Exception e) {
         tx.rollback();

@@ -15,12 +15,19 @@ public static void main(String[] args) {
         team.setName("teamA");
         em.persist(team);
         
-        Member3 member = new Member3();
-        member.setUsername(null);
-        member.setAge(10);
-        member.setType(MemberType3.ADMIN);
-        member.setTeam(team);
-        em.persist(member);
+        Member3 member1 = new Member3();
+        member1.setUsername("administ");
+        member1.setAge(10);
+        member1.setType(MemberType3.ADMIN);
+        member1.setTeam(team);
+        em.persist(member1);
+    
+    
+        Member3 member2 = new Member3();
+        member2.setUsername("administ2");
+        member2.setAge(20);
+        member2.setType(MemberType3.ADMIN);
+        em.persist(member2);
         
         em.flush();
         em.clear();
@@ -32,7 +39,9 @@ public static void main(String[] args) {
 //                               "end " +
 //                               "from Member3 m";
         
-        String query = "select coalesce(m.username, '이름 없는 회원') from Member3 m";
+//        String query = "select 'a' || 'b' From Member m";
+//        String query = "select locate('de', 'abcdeaf') From Member3 m";
+        String query = "select function('group_concat', m.username) From Member3 m";
         List<String> result = em.createQuery(query, String.class).getResultList();
     
         for (String s : result) {
