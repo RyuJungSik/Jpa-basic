@@ -16,7 +16,7 @@ public static void main(String[] args) {
         em.persist(team);
         
         Member3 member = new Member3();
-        member.setUsername("member1");
+        member.setUsername(null);
         member.setAge(10);
         member.setType(MemberType3.ADMIN);
         member.setTeam(team);
@@ -25,16 +25,20 @@ public static void main(String[] args) {
         em.flush();
         em.clear();
         
-        String query = "select m.username, 'HELLO', true From Member3 m " +
-                               "where m.type = :userType3";
-        List<Object[]> result = em.createQuery(query).setParameter("userType3", MemberType3.ADMIN).getResultList();
+//        String query = "select " +
+//                               "case when m.age <=10 then '학생요금' " +
+//                               " when m.age >=60 then '경로요금' " +
+//                               " else '일반요금' " +
+//                               "end " +
+//                               "from Member3 m";
         
-        for (Object[] objects : result) {
-            System.out.println("objects[0] = " + objects[0]);
-            System.out.println("objects[0] = " + objects[1]);
-            System.out.println("objects[0] = " + objects[2]);
+        String query = "select coalesce(m.username, '이름 없는 회원') from Member3 m";
+        List<String> result = em.createQuery(query, String.class).getResultList();
+    
+        for (String s : result) {
+            System.out.println("s = " + s);
         }
-        
+    
         tx.commit();
     } catch (Exception e) {
         tx.rollback();
