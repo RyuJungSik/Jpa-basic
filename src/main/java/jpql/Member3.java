@@ -15,6 +15,9 @@ private int age;
 @JoinColumn(name = "TEAM_ID")
 private Team3 team;
 
+private MemberType3 type;
+
+
 public void changeTeam(Team3 team) {
     this.team = team;
     team.getMembers().add(this);
@@ -50,6 +53,14 @@ public Team3 getTeam() {
 
 public void setTeam(Team3 team) {
     this.team = team;
+}
+
+public MemberType3 getType() {
+    return type;
+}
+
+public void setType(MemberType3 type) {
+    this.type = type;
 }
 
 @Override
