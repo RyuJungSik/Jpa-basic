@@ -1,6 +1,8 @@
 package jpql;
 
 
+import org.hibernate.annotations.BatchSize;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ private Long id;
 
 private String name;
 
+@BatchSize(size =100)
 @OneToMany(mappedBy = "team")
 private List<Member3> members = new ArrayList<>();
 

@@ -38,8 +38,12 @@ public static void main(String[] args) {
         em.flush();
         em.clear();
         
-        String query = "select t From Team3 t join fetch t.members m";
-        List<Team3> result = em.createQuery(query, Team3.class).getResultList();
+        String query = "select t From Team3 t";
+        List<Team3> result = em.createQuery(query, Team3.class).setFirstResult(0)
+                                     .setMaxResults(2)
+                                     .getResultList();
+    
+        System.out.println("result.size() = " + result.size());
         
         for (Team3 team : result) {
             System.out.println("team.getName() = " + team.getName() + " | " + team.getMembers().size());
