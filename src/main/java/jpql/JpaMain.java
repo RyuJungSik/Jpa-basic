@@ -38,19 +38,13 @@ public static void main(String[] args) {
         em.flush();
         em.clear();
         
-        String query = "select t From Team3 t";
-        List<Team3> result = em.createQuery(query, Team3.class).setFirstResult(0)
-                                     .setMaxResults(2)
-                                     .getResultList();
+        String query = "select m from Member3 m where m = :member";
+        Member3 findMember = em.createQuery(query, Member3.class)
+                                  .setParameter("member", member1)
+                                  .getSingleResult();
     
-        System.out.println("result.size() = " + result.size());
-        
-        for (Team3 team : result) {
-            System.out.println("team.getName() = " + team.getName() + " | " + team.getMembers().size());
-            for (Member3 member : team.getMembers()) {
-                System.out.println("member = " + member);
-            }
-        }
+    
+        System.out.println("findMember = " + findMember);
         
         tx.commit();
     } catch (Exception e) {
