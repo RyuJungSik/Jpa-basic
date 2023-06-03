@@ -38,13 +38,10 @@ public static void main(String[] args) {
         em.flush();
         em.clear();
     
-        List<Member3> resultList = em.createNamedQuery("Member3.findByUsername", Member3.class)
-                                           .setParameter("username", "geust1")
-                                           .getResultList();
+        int resultCount = em.createQuery("update Member3 m set m.age=20").executeUpdate();
+        System.out.println("resultCount = " + resultCount);
     
-        for (Member3 member : resultList) {
-            System.out.println("member = " + member);
-        }
+    
         tx.commit();
     } catch (Exception e) {
         tx.rollback();
