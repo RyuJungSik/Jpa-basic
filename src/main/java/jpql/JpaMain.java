@@ -37,15 +37,14 @@ public static void main(String[] args) {
         
         em.flush();
         em.clear();
-        
-        String query = "select m from Member3 m where m = :member";
-        Member3 findMember = em.createQuery(query, Member3.class)
-                                  .setParameter("member", member1)
-                                  .getSingleResult();
     
+        List<Member3> resultList = em.createNamedQuery("Member3.findByUsername", Member3.class)
+                                           .setParameter("username", "geust1")
+                                           .getResultList();
     
-        System.out.println("findMember = " + findMember);
-        
+        for (Member3 member : resultList) {
+            System.out.println("member = " + member);
+        }
         tx.commit();
     } catch (Exception e) {
         tx.rollback();
