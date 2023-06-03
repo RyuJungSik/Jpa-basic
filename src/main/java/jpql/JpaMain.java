@@ -12,41 +12,42 @@ public static void main(String[] args) {
     tx.begin();
     
     try {
-        Team3 team = new Team3();
-        team.setName("teamA");
-        em.persist(team);
+        Team3 teamA = new Team3();
+        teamA.setName("teamA");
+        em.persist(teamA);
+        
+        Team3 teamB = new Team3();
+        teamB.setName("teamB");
+        em.persist(teamB);
         
         Member3 member1 = new Member3();
-        member1.setUsername("administ");
-        member1.setAge(10);
-        member1.setType(MemberType3.ADMIN);
-        member1.setTeam(team);
+        member1.setUsername("guest1");
+        member1.setTeam(teamA);
         em.persist(member1);
-    
-    
+        
         Member3 member2 = new Member3();
-        member2.setUsername("administ2");
-        member2.setAge(20);
-        member2.setType(MemberType3.ADMIN);
+        member2.setUsername("guest2");
+        member2.setTeam(teamA);
         em.persist(member2);
+        
+        Member3 member3 = new Member3();
+        member3.setUsername("guest3");
+        member3.setTeam(teamB);
+        em.persist(member3);
         
         em.flush();
         em.clear();
         
-//        String query = "select " +
-//                               "case when m.age <=10 then '학생요금' " +
-//                               " when m.age >=60 then '경로요금' " +
-//                               " else '일반요금' " +
-//                               "end " +
-//                               "from Member3 m";
+        String query = "select t From Team3 t join fetch t.members m";
+        List<Team3> result = em.createQuery(query, Team3.class).getResultList();
         
-//        String query = "select 'a' || 'b' From Member m";
-//        String query = "select locate('de', 'abcdeaf') From Member3 m";
-        String query = "select t.members From Team3 t";
-        Collection result = em.createQuery(query, Collection.class).getResultList();
-    
-        System.out.println("s = " + result);
-    
+        for (Team3 team : result) {
+            System.out.println("team.getName() = " + team.getName() + " | " + team.getMembers().size());
+            for (Member3 member : team.getMembers()) {
+                System.out.println("member = " + member);
+            }
+        }
+        
         tx.commit();
     } catch (Exception e) {
         tx.rollback();
