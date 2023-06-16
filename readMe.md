@@ -23,7 +23,8 @@
     - 요즘은 대중언어에는 ORM이 대부분 존재한다.
 - JPA 동작원리
 
-  ![Screen Shot 2023-06-10 at 19.25.44 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3f200f64-6f18-421a-9c11-492fa1d6b22a/Screen_Shot_2023-06-10_at_19.25.44_PM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/f8c483b5-ea7d-4d11-8af9-a9cf3bf2ab49)
+
 
     - JPA는 애플리케이션과 JDBC사이에서 동작한다.
     - 객체를 저장 요청하면 JPA가 객체를 분석후 인서트 SQL까지 만들어준다.
@@ -65,7 +66,8 @@
 
 - JPA 구동 방식
 
-  ![Screen Shot 2023-06-10 at 21.14.27 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/19b16dc1-184d-4f96-aec6-acb2f709d6bd/Screen_Shot_2023-06-10_at_21.14.27_PM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/98a18d68-61c6-4e73-9c44-b8486ccaaeec)
+
 
     - JPA는 Persistence클래스가 있다.
     - Persistence클래스는 설정정보를 받아서 EntityManagerFactory 클래스를 만든다.
@@ -97,7 +99,7 @@
 
 - 엔티티 매니저 팩토리와 엔티티 매니저의 이해
 
-  ![Screen Shot 2023-06-10 at 22.22.56 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/95ff7349-ba52-4f4a-81e5-4650314fa9a1/Screen_Shot_2023-06-10_at_22.22.56_PM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/4db8cbc9-6aad-4b92-9d80-86323e2b7090)
 
     - 사용자의 요청이 올때마다 엔티티 매니저 팩토리는 엔티티 매니저를 생성하고
     - 엔티티 매니저는 내부적으로 데이터베이스 커넥션을 사용해서 디비를 사용한다.
@@ -134,7 +136,8 @@
 
 - 엔티티 등록 시 트랜잭션을 지원하는 쓰지 지연이란?
 
-  ![Screen Shot 2023-06-10 at 23.29.16 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8d6a8206-f086-4026-a578-566148d4caea/Screen_Shot_2023-06-10_at_23.29.16_PM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/4c9523a3-167f-414e-b422-800061947063)
+
 
     - persist로 등록 시 바로 쿼리를 날리는 것이아닌
     - 해당 엔티티를 영속성 컨텍스트의 쓰기 지연 SQL저장소와 1차 캐시에 저장한다.
@@ -144,7 +147,8 @@
     - 엔티티의 값을 변경 시 특정 함수를 사용하지 않아도 객체의 값만 변경해줘도 JPA에서 자동으로 값을 수정해준다.
 - 변경감지(Dirty Checking) 동작 원리는?
 
-  ![Screen Shot 2023-06-10 at 23.57.31 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/31824c5e-ca55-41b1-a7a4-95f0752641f2/Screen_Shot_2023-06-10_at_23.57.31_PM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/71297af4-8675-4e9c-9f39-a5cdcfbad77b)
+
 
     - 커밋을하면 영속성 컨텍스트에서 flush()를 호출한다.
     - 그 후 1차캐시에 있는  스냅샷과 엔티티를 비교한다.
@@ -317,7 +321,8 @@
 - 테이블은 외래키 하나로 두테이블의 연관관계를 관리할 수 있다.
 - 객체의 양방향 시 테이블의 외래키를 변경시킬 주인이 필요하다.
 
-  ![Screen Shot 2023-06-12 at 02.44.46 AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d4175015-0f22-435f-9d78-4c2629513bca/Screen_Shot_2023-06-12_at_02.44.46_AM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/b638d2ab-e1f9-464b-be36-1f11eecc6c8b)
+
 
 - 연관관계의 주인 - 양방향 매핑 규칙은?
     - 객체의 두 관계중 하나를 연관관계의 주인으로 지정해야한다.
@@ -327,7 +332,8 @@
     - 주인이 아니면 mappedBy 속성으로 주인 지정가능하다.
 - 주인이 되는 기준인 → 외래키가 있는 곳을 주인으로 정한다.
 
-  ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6d44ed68-666c-4a76-b7bf-75710da42e99/Untitled.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/ccf6f994-1a77-4667-9757-9c48976ce1bf)
+
 
 - 보통 1 대 다  중에서 다쪽으로 정한다.
 - 양방향 연관관계 시 주의점
@@ -378,7 +384,8 @@
     - 외래 키에 데이터베이스 유니크 제약조건 추가 가능하다.
 - 일대일 - 주 테이블에 외래 키 단방향
 
-  ![Screen Shot 2023-06-13 at 22.59.26 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dc2878ad-ceca-47ee-a405-53579df52dd7/Screen_Shot_2023-06-13_at_22.59.26_PM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/daa71c9e-7670-40d0-aaf9-eaefffc53592)
+
 
     ```java
     @Entity
@@ -417,7 +424,8 @@
 
 - 일대일 - 대상 테이블에 외래 키 양방향
 
-  ![Screen Shot 2023-06-13 at 23.44.04 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d24595d2-c23d-4771-9d0b-6f17581b892b/Screen_Shot_2023-06-13_at_23.44.04_PM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/336181c1-73c0-4360-b86a-1162a22d18c9)
+
 
 - **주 테이블에 외래 키 VS 대상 테이블에 외래 키**
     - **주 테이블에 외래 키**
@@ -444,15 +452,18 @@
 - 슈퍼타입 서브타입의 논리모델을 실제 물리모텔(테이블)로 구현하는 방법은 크게 세가지이다.
     - 각각 테이블로 변환 → 조인 전략
 
-      ![Screen Shot 2023-06-14 at 21.50.21 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cd96c9c8-b928-454f-98f1-eba47542e3dc/Screen_Shot_2023-06-14_at_21.50.21_PM.png)
+      ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/c54a2b74-655c-4585-82d8-c4b30794cf96)
+
 
     - 통합 테이블로 변환 → 단일 테이블 전략
 
-      ![Screen Shot 2023-06-14 at 21.50.24 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/944fb4eb-e50f-4ba1-a05f-03b48fb47c75/Screen_Shot_2023-06-14_at_21.50.24_PM.png)
+      ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/92b643ae-9bd6-4310-821a-e35c5ceda18c)
+
 
     - 서브타입 테이블로 변환 → 구현 클래스마다 테이블 전략
 
-      ![Screen Shot 2023-06-14 at 21.50.28 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a1cdd320-1769-4ff5-a8b9-abdf75e6fa7e/Screen_Shot_2023-06-14_at_21.50.28_PM.png)
+      ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/a5d9db9b-2ec9-4bbb-a35e-1b236b483fec)
+
 
 - 조인 전략 특징과 구현법
     - 슈퍼 클래스에 @Inheritance(strategy = InheritanceType.JOINED)로 상속관계를 만들 수 있다.
@@ -525,7 +536,8 @@
     - em.getReference() → 데이터베이스 조회를 미루는 가짜(프록시) 엔티티 객체 조회한다.
 - 프록시의 특징
 
-  ![Screen Shot 2023-06-15 at 23.42.42 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/02c6f666-0949-47a6-bcbf-86eef98c18eb/Screen_Shot_2023-06-15_at_23.42.42_PM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/fb4ea428-23da-49b1-a8cf-39555bc4c9f2)
+
 
     - 실제 클래스를 상속받아서 만들어진다.
     - 실제 클래스와 겉 모양이 같다.
@@ -535,7 +547,8 @@
     -
 - 프록시 객체 초기화
 
-  ![Screen Shot 2023-06-15 at 23.46.34 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fa4866af-ad3b-46c4-8689-1655a8dc91cf/Screen_Shot_2023-06-15_at_23.46.34_PM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/16e19b04-c038-4614-b859-be5d03d9785a)
+
 
     - em.getReference(Member.class,”id1”)로 프록시 객체를 갖고온다.
     - getName()을 호출 하는 시점에  프록시객체는 영속성 컨텍스트에 멤버 엔티티를 요청하고
@@ -571,7 +584,8 @@
 
 - 영속성 전이란 →
 
-  ![Screen Shot 2023-06-16 at 01.27.28 AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c0e63201-2b57-4528-873d-d29361f721e1/Screen_Shot_2023-06-16_at_01.27.28_AM.png)
+  ![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/9315f58c-a36a-4d50-8836-50a184d285e4)
+
 
     - 특정 엔티티를 영속상태로 만들 때 연관된 엔티티도 함꼐 영속 상태로 만들고 싶을때 사용한다.
 - @OneToMany(mappedBy=”parent”, cascade=CascadeType.ALL)과 같이 쓴다.
@@ -619,7 +633,8 @@
     - 임베디드 타입을 포함한 모든 값 타입은 엔티티에 생명주기를 의존한다.
 - 임베디드 타입과 테이블 매핑은 아래의 사진처럼 이루어진다.
 
-![Screen Shot 2023-06-16 at 17.50.35 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3f263b00-78c6-45ec-9ccc-a7f05d19ca70/Screen_Shot_2023-06-16_at_17.50.35_PM.png)
+![image](https://github.com/RyuJungSik/Jpa-basic/assets/76714485/f81a71bd-3f87-4373-9062-ef44cddc0c51)
+
 
 ```java
 @Entity
